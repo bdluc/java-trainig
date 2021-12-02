@@ -18,5 +18,25 @@
       <property name = "age" value = "24"/>
       <property name = "email" value = "nguyenconmeo2021@yahoo.com"/>
    </bean>	
+   
+   <bean id = "book" class = "com.bean.life.cycle.Book" init-method = "init" destroy-method ="destroy">
+   		<property name = "title" value = "The one thing"/>
+   		<property name = "auther" value = "Gary Keller and Jay Papasan"/>
+   		<property name = "price" value = "500"/>
+   </bean>
+   
+   <bean id = "car" class = "com.event.handle.Car">
+   	<property name = "name" value = "Audi" />
+   	<property name = "price" value = "20000" />
+   </bean>
+   
+   <bean id = "cStartEventHandler" class = "com.event.handle.CStartEventHandler" />
+   <bean id = "cStopEventHandler" class = "com.event.handle.CStopEventHandler" />
+   <bean id = "cRefreshEventHandler" class = "com.event.handle.CRefreshEventHandler" />
+   <bean id = "CCloseEventHandler" class = "com.event.handle.CCloseEventHandler" />
+   <bean class = "com.bean.post.processor.InitBook" />
+   
+   <bean id = "customEventHandler" class = "com.custom.event.CustomEventhandler" />
+   <bean id = "customEventPublisher" class = "com.custom.event.CustomEventPublisher" />
 	
 </beans>
