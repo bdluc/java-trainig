@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,46 +16,32 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tma.RestApiConnectDB.Model.ResponseMessage;
 import com.tma.RestApiConnectDB.Model.User;
+import com.tma.RestApiConnectDB.Repository.UserRepository;
+import com.tma.RestApiConnectDB.Service.UserStorageService;
 
 @RestController
+@RequestMapping("/api")
 public class UserController {
-	private static Map<String, User> userRepo = new HashMap<>();
+	
+	@Autowired
+	private UserStorageService userStorageService;
+	
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 	
-	//add User
+	
+	
 	@PostMapping("/user")
-	public ResponseEntity<Object> create(@RequestBody User user) {
-		
-		userRepo.put(user.getId(), user);
-		
-		logger.info("Thêm User ");
-		
-		return new ResponseEntity<>("User is created successfully", HttpStatus.CREATED);
+	public ResponseEntity<User> add(@RequestBody User user) {
+		try {
+			 User ur =  userStorageService.store(user);
+			logger.info("add thành công");
+			return new ResponseEntity<>(ur, HttpStatus.CREATED);
+		}catch (Exception e){
+			logger.error(" add faild");
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
-	//update User
-	@PutMapping("/user/{id}")
-	public ResponseEntity<Object> updateUser(@PathVariable("id") String id, @RequestBody User user) {
-		
-		userRepo.remove(id);
-		user.setId(id);
-		userRepo.put(id, user);
-	    	logger.info("UPdate user");
-	    return new ResponseEntity<>("User is updated successsfully", HttpStatus.OK);
-	}
-	
-	//Delete User
-	@DeleteMapping("/user/{id}")
-	   public ResponseEntity<Object> delete(@PathVariable("id") String id) { 
-			userRepo.remove(id);
-			return new ResponseEntity<>("User is deleted successsfully", HttpStatus.OK);
-	   }
-	
-	//Get all users
-	@GetMapping("/users")
-	   public ResponseEntity<Object> getProduct() {
-			logger.info("thông tin user");
-			return new ResponseEntity<>(userRepo.values(), HttpStatus.OK);
-	   }
 }
