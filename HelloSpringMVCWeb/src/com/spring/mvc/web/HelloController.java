@@ -1,15 +1,27 @@
 package com.spring.mvc.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@RequestMapping("/hello")
 public class HelloController {
-   @RequestMapping(method = RequestMethod.GET)public String printHello(ModelMap model) {
-      model.addAttribute("message", "Hello Spring MVC Framework!");
-      return "hello";
-   }
+	@GetMapping("/hello")
+	public String printHello(ModelMap model) {
+		model.addAttribute("message", "Hi my name is Bydin");
+		return "hellos";
+	}
+	
+	@GetMapping("/index")
+	public String index() {
+	    return "index";
+	}
+	@GetMapping("/redirect")
+	public String redirect() {
+	    return "redirect:finalPage";
+	}
+	@GetMapping("/finalPage")
+	public String finalPage() {
+	   return "final";
+	}
 }

@@ -6,5 +6,6 @@
    
    <body>
       <h2>${message}</h2>
+      <h3>${name}</h3>
    </body>
 </html>
