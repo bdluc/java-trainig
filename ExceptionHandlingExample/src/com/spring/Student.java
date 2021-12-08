@@ -1,10 +1,9 @@
-package com.spring.mvc.web;
+package com.spring;
 
 import lombok.*;
+
 @Setter
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Student {
 	private int age;
 	private String name;

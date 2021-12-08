@@ -6,12 +6,22 @@
    http://www.springframework.org/schema/context 
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-   <context:component-scan base-package = "com.spring.mvc.web, com.spring.mvc.web.Student" />
-   
+   <context:component-scan base-package = "com.spring" />
+
    <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
       <property name = "prefix" value = "/WEB-INF/jsp/" />
       <property name = "suffix" value = ".jsp" />
    </bean>
-   
+
+   <bean class = "org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+      <property name = "exceptionMappings">
+         <props>
+            <prop key = "com.spring.SpringException">
+               ExceptionPage
+            </prop>
+         </props>
+      </property>
+      <property name = "defaultErrorView" value = "error"/>
+   </bean>
 
 </beans>

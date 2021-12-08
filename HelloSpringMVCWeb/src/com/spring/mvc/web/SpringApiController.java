@@ -1,19 +1,15 @@
 package com.spring.mvc.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//Error not action  Why?
+
 
 @RestController
 public class SpringApiController {
-	private List<Student> students = new ArrayList<Student>();
-	
-	@GetMapping("/students")
-	public List<Student> getAll() {
-		return students;
+	Student student = new Student(19, "Con meo" ,10);
+	@RequestMapping(value = "/students")
+	public Student getProduct() {
+		return student;
 	}
 }
