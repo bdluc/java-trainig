@@ -4,3 +4,9 @@
 2021-12-09 17:25:30 ERROR MainApp:18 - This is error
 2021-12-09 17:25:30 FATAL MainApp:19 - This is fatal
 2021-12-09 17:25:30 INFO  MainApp:22 - Exitting the program
+2021-12-09 20:05:05 DEBUG MainApp:13 - This is debug
+2021-12-09 20:05:05 INFO  MainApp:14 - Will create Book book
+2021-12-09 20:05:05 WARN  MainApp:15 - This is warn
+2021-12-09 20:05:05 ERROR MainApp:16 - This is error
+2021-12-09 20:05:05 FATAL MainApp:17 - This is fatal
+2021-12-09 20:05:05 INFO  MainApp:20 - Exitting the program
