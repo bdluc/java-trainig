@@ -17,7 +17,7 @@ public class UserStorageService {
 	
 	public User store(User user) {
 		
-		User ur = userRepository.save(new User(user.getName(), user.getAge()));
+		User ur = userRepository.save(new User(user.getId(), user.getName(), user.getEmail(),user.getGender()));
 		
 		return ur;
 		
