@@ -1,6 +1,7 @@
 package com.tma.crud.service;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tma.crud.entity.Customer;
 
@@ -14,4 +15,6 @@ public interface CustomerService {
 	public String deleteCustomer(Customer customer);
 
 	public Customer findById(Long id);
+
+	public void save(MultipartFile file);
 }

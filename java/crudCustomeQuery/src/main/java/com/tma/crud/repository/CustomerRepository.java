@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,11 +14,11 @@ import com.tma.crud.entity.Customer;
 
 
 @Repository
-public interface CustomerRepository extends CrudRepository<Customer, Serializable> {
+public interface CustomerRepository extends JpaRepository<Customer, Serializable> {
 
 	@Modifying
 	@Transactional
-	@Query(value = "insert into Customer (id,customerName,customerEmail, phone) "
+	@Query(value = "insert into Customer (id,customer_Name,customer_Email, phone) "
 			+ "VALUES(:id,:customerName,:customerEmail,:phone)", nativeQuery = true)
 	public void insertCustomerUsingQueryAnnotation(@Param("id") Long id, @Param("customerName") String customerName,
 			@Param("customerEmail") String customerEmail, @Param("phone") String phone);

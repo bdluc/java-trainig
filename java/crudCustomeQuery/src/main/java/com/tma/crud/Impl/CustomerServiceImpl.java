@@ -3,12 +3,18 @@ package com.tma.crud.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.List;
+
+import com.tma.crud.config.CustomerHelper;
 import com.tma.crud.entity.Customer;
 import com.tma.crud.repository.CustomerRepository;
 import com.tma.crud.service.CustomerService;
 
 @Service("customerServiceImpl")
+@Transactional
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
@@ -44,5 +50,18 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerResponse;
 	}
 
-
+	/*
+		upload excel
+	*/
+	@Override
+	@Transactional(rollbackFor = IOException.class)
+	public void save(MultipartFile file) {
+		try {
+			List<Customer> customer = CustomerHelper.customerExcel(file.getInputStream());
+			customerRepository.saveAll(customer);
+		} catch (IOException e) {
+			throw new RuntimeException("fail excel data:" + e.getMessage());
+		}
+		
+	}
 }
