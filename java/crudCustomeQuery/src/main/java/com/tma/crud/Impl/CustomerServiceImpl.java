@@ -14,7 +14,6 @@ import com.tma.crud.repository.CustomerRepository;
 import com.tma.crud.service.CustomerService;
 
 @Service("customerServiceImpl")
-@Transactional
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
@@ -53,15 +52,30 @@ public class CustomerServiceImpl implements CustomerService {
 	/*
 		upload excel
 	*/
+
 	@Override
 	@Transactional(rollbackFor = IOException.class)
-	public void save(MultipartFile file) {
-		try {
-			List<Customer> customer = CustomerHelper.customerExcel(file.getInputStream());
-			customerRepository.saveAll(customer);
-		} catch (IOException e) {
-			throw new RuntimeException("fail excel data:" + e.getMessage());
-		}
-		
+	public void save(MultipartFile file)  {
+
+		Customer cus = new Customer();
+		Customer customerEmail1 = customerRepository.existsByCustomerEmail(cus.getCustomerEmail());
+
+			try {  
+				List<Customer> customer = CustomerHelper.customerExcel(file.getInputStream());
+				
+
+				
+				if (customerEmail1.equals(arg0)){
+					
+					
+				} else {
+					for (int i = 0 ; i < customer.size(); i++){
+						customerRepository.saveAll(customer);
+					}
+					
+				}
+			} catch (IOException e) {
+				throw new RuntimeException("fail excel data:" + e.getMessage());
+			}
 	}
 }

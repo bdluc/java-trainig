@@ -58,16 +58,15 @@ public class CustomerController {
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("files") MultipartFile file) {
 		String message = "";
-
-		try {
-			customerService.save(file);
-	
-			message = "Uploaded the file successfully: " + file.getOriginalFilename();
-			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
-		  } catch (Exception e) {
-			message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
-		  }
-
+		
+			try {
+				customerService.save(file);
+		
+				message = "Uploaded the file successfully: " + file.getOriginalFilename();
+				return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+			} catch (Exception e) {
+				message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+				return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+			}
 	}
 }

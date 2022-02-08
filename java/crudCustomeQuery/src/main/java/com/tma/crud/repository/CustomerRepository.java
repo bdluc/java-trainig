@@ -35,4 +35,12 @@ public interface CustomerRepository extends JpaRepository<Customer, Serializable
 
 	@Query("select s from Customer s where s.id = :id")
 	public Customer findById(@Param("id") Long id);
+
+	// @Modifying
+	// @Query("select from Customer s where s.customerEmail = :customerEmail")
+	// public Customer checkEmailExists(@Param("customerEmail") String customerEmail);
+
+	// public Customer findByEmail(String email);
+
+	public Customer existsByCustomerEmail(String customerEmail);
 }

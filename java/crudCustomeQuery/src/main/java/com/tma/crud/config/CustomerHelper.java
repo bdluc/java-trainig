@@ -20,10 +20,10 @@ public class CustomerHelper {
   static String[] HEADERs = { "Id", "customerName", "customerEmail", "Phone"};
   static String SHEET = "Customers";
 
-
     /*
 		read file excel
     */
+
   public static List<Customer> customerExcel(InputStream is) {
 
     try {

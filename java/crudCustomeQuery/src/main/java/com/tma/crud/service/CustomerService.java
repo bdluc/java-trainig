@@ -8,6 +8,7 @@ import com.tma.crud.entity.Customer;
 
 @Component
 public interface CustomerService {
+
 	public String insertCustomer(Customer customer);
 
 	public String updateCustomer(Customer customer);
